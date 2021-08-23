@@ -1,32 +1,52 @@
 public class EmployeeWageBuilder {
-    public static final int IS_PART_TIME = 1;
-    public static final int IS_FULL_TIME = 2;
-    public static final int EMP_RATE_PER_HOUR = 20;
-    public static final int NO_OF_WORKING_DAYS = 2;
-    public static final int MAX_HRS_IN_MONTH = 10;
+    int empCheck = (int) (Math.floor(Math.random()*10)%3);
+	static final int fullTime = 1;
+	static final int partTime = 2;
+	String companyName = "";
+	int empHrs = 0;
+	int totalDays;
+	int ratePerHr;
+	int salary;
 
-    public static void main(String[] args) {
-        // Variables
-        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-        // Computation
-        while (totalEmpHrs <=  MAX_HRS_IN_MONTH &&
-                totalWorkingDays < NO_OF_WORKING_DAYS ) {
-            totalWorkingDays ++;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-            switch (empCheck) {
-                case IS_PART_TIME:
-                    empHrs = 4;
-                    break;
-                case IS_FULL_TIME:
-                    empHrs = 8;
-                    break;
-                default:
-                    empHrs = 0;
-            }
-            totalEmpHrs += empHrs;
-            System.out.println("Days : " + totalWorkingDays + ", Emp Hrs : " + empHrs );
-        }
-        int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-        System.out.println("Total Emp Wage : " + totalEmpWage);
-    }
+	public EmpWageComputation(String companyName, int totalDays, int ratePerHr) {
+		this.companyName = companyName;
+		this.totalDays = totalDays;
+		this.ratePerHr = ratePerHr;
+	}
+
+	public void empChecking() {
+		int TotalSalary=0;
+		int day=0;
+		int noOfHrs=0;
+
+		while(day<totalDays && noOfHrs<100) {		
+			int empCheck=(int) (Math.floor(Math.random()*10)%3);	
+			switch(empCheck) {
+			case fullTime:
+				empHrs=8;
+				salary=empHrs*ratePerHr;
+				break;
+			case partTime:
+				empHrs=4;
+				salary=empHrs*ratePerHr;
+				break;
+			default:
+				empHrs=0;
+			}
+			TotalSalary=TotalSalary+salary;
+			noOfHrs=noOfHrs+empHrs;
+			day++;
+		}
+		System.out.println("Total No Of Hrs: "+noOfHrs);
+		System.out.println("Total Employee Wage: "+TotalSalary);
+	}
+
+	public static void main(String[] args) {
+		EmpWageComputation dmart = new EmpWageComputation("D-Mart",30,20);
+		dmart.empChecking();
+		System.out.println("************************************");
+		EmpWageComputation tata = new EmpWageComputation("TATA",25,30);
+		tata.empChecking();
+
+	}
 }
