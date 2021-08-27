@@ -1,32 +1,65 @@
 public class EmployeeWageBuilder {
-    public static final int IS_PART_TIME = 1;
-    public static final int IS_FULL_TIME = 2;
-    public static final int EMP_RATE_PER_HOUR = 20;
-    public static final int NO_OF_WORKING_DAYS = 2;
-    public static final int MAX_HRS_IN_MONTH = 10;
+    public static final int ABSENT = 0;
+    public static final int FULL_TIME = 1;
+    public static final int PART_TIME = 2;
 
+    // main method
     public static void main(String[] args) {
-        // Variables
-        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-        // Computation
-        while (totalEmpHrs <=  MAX_HRS_IN_MONTH &&
-                totalWorkingDays < NO_OF_WORKING_DAYS ) {
-            totalWorkingDays ++;
+        System.out.println("Welcome to Employee Wage Computation !");
+        System.out.println();
+        employeeAttendanceChecker();
+    }
+
+    // checks employee attendance and  displays salary of employee
+    public static void employeeAttendanceChecker() {
+        int numberOfWorkingDays = 0;
+        int totalWorkingHours = 0;
+        int salary = 0;
+        int fulTimeCount = 0;
+        int partTimeCount = 0;
+        int absentCount = 0;
+
+        while (numberOfWorkingDays != 20) {
+
+            int empHours = 0;
             int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+
             switch (empCheck) {
-                case IS_PART_TIME:
-                    empHrs = 4;
-                    break;
-                case IS_FULL_TIME:
-                    empHrs = 8;
-                    break;
-                default:
-                    empHrs = 0;
+                case ABSENT -> {
+                    absentCount++;
+                    empHours = 0;
+                }
+                case FULL_TIME -> {
+                    fulTimeCount++;
+                    empHours = 8;
+                }
+                case PART_TIME -> {
+                    partTimeCount++;
+                    empHours = 4;
+                }
             }
-            totalEmpHrs += empHrs;
-            System.out.println("Days : " + totalWorkingDays + ", Emp Hrs : " + empHrs );
+
+            totalWorkingHours += empHours;
+            if (totalWorkingHours >= 100) {
+                totalWorkingHours = 100;
+                break;
+            }
+
+            int wage = wageCalculator(empHours);
+            salary += wage;
+            numberOfWorkingDays++;
         }
-        int totalEmpWage = totalEmpHrs * EMP_RATE_PER_HOUR;
-        System.out.println("Total Emp Wage : " + totalEmpWage);
+
+        System.out.println("Absent : " + absentCount + " Days");
+        System.out.println("Full Time Present : " + fulTimeCount + " Days");
+        System.out.println("Part Time Present : " + partTimeCount + " Days");
+        System.out.println("Employee total working hours : " + totalWorkingHours);
+        System.out.println("Employee Salary for the month is : " + salary + " Rs /-");
+    }
+
+    // returns the wage of employee per day
+    public static int wageCalculator(int workingHours) {
+        int WAGE_PER_HOUR = 20;
+        return WAGE_PER_HOUR * workingHours;
     }
 }
