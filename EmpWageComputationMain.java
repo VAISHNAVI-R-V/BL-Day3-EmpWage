@@ -9,5 +9,4 @@ public class EmpWageComputationMain {
         empWageComputation.addCompany("RELIANCE", 10, 4,100);
         empWageComputation.computEmpWage();
     }
-
 }

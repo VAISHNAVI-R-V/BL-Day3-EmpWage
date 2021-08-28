@@ -1,17 +1,16 @@
 package com.bl.d3;
 
 public class Company {
-
-    public String company ;
-    public int wagePerHrs ;
-    public int numOfWorkinDays ;
-    public int maxHrsPerMonth ;
+    public String company;
+    public int wagePerHrs;
+    public int numOfWorkingDays;
+    public int maxHrsPerMonth;
     public int totalEmpWage;
 
     public Company(String company, int wagePerHrs, int numOfWorkinDays, int maxHrsPerMonth) {
         this.company = company;
         this.wagePerHrs = wagePerHrs;
-        this.numOfWorkinDays = numOfWorkinDays;
+        this.numOfWorkingDays = numOfWorkinDays;
         this.maxHrsPerMonth = maxHrsPerMonth;
     }
 
@@ -24,7 +23,7 @@ public class Company {
         return "Company{" +
                 "company='" + company + '\'' +
                 ", wagePerHrs=" + wagePerHrs +
-                ", numOfWorkinDays=" + numOfWorkinDays +
+                ", numOfWorkinDays=" + numOfWorkingDays +
                 ", maxHrsPerMonth=" + maxHrsPerMonth +
                 ", totalEmpWage=" + totalEmpWage +
                 '}';
@@ -32,7 +31,8 @@ public class Company {
 
 //    @Override
 //    public String toString() {
-//        return  "company Name ='" + company + '\'' +
+//        return "company Name ='" + company + '\'' +
 //                ", \nTotal Emploee Wage =" + totalEmpWage +
-//                "\n---------------------------------------------------------------------" ;
+//                "\n---------------------------------------------------------------------";
+//    }
 }
